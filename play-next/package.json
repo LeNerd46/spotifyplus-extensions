@@ -1,0 +1,16 @@
+{
+  "name": "play-next",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "spotifyplus dev",
+    "build": "spotifyplus build",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "spotifyplus": "latest",
+    "typescript": "5.9.3",
+    "@types/node": "22.19.17"
+  }
+}
