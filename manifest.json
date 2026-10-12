@@ -101,6 +101,6 @@
             "scrobbles"
         ],
         "api": 2,
-        "main": "dist/index.js"
+        "main": "lastfm/dist/index.js"
     }
 ]
