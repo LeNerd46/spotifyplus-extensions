@@ -1,0 +1,17 @@
+{
+    "name": "lastfm",
+    "version": "1.0.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "spotifyplus dev",
+        "build": "spotifyplus build"
+    },
+    "devDependencies": {
+        "@types/node": "latest",
+        "react": "latest",
+        "spotifyplus": "latest",
+        "typescript": "latest",
+        "@types/react": "latest"
+    }
+}

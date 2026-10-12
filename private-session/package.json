@@ -1,0 +1,16 @@
+{
+  "name": "persistent-private-session",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node ../../../GitHub/SpotifyPlus/app/src/main/assets/nodejs-src/tools/dev-cli.mjs dev",
+    "build": "node ../../../GitHub/SpotifyPlus/app/src/main/assets/nodejs-src/tools/dev-cli.mjs build",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "spotifyplus": "file:../../../GitHub/SpotifyPlus/app/src/main/assets/nodejs-src",
+    "typescript": "5.9.3",
+    "@types/node": "22.19.17"
+  }
+}

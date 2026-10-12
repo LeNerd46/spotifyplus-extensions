@@ -1,0 +1,19 @@
+{
+    "id": "com.lenerd.lastfm",
+    "name": "Last.fm Scrobbles",
+    "description": "An extension that shows you how many times you've listened to songs, albums, and artists",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "Lenerd46",
+            "url": "https://www.github.com/Lenerd46"
+        }
+    ],
+    "tags": [
+        "lastfm",
+        "stats",
+        "scrobbles"
+    ],
+    "api": 2,
+    "main": "dist/index.js"
+}
