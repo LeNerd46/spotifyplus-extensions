@@ -38,7 +38,7 @@
     },
     {
         "id": "com.lenerd.bringbacklikes",
-        "name": "bring-back-likes",
+        "name": "Bring Back Likes",
         "description": "Restore the heart button on Now Playing.",
         "version": "1.0.0",
         "authors": [
