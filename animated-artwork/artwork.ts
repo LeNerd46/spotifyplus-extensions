@@ -1,5 +1,6 @@
 export interface ArtworkQuery {
-    title: string;
+    /** The track to search for. Leave it out to search for the album itself */
+    title?: string;
     artist: string;
     album: string;
 }
@@ -11,16 +12,16 @@ interface ITunesResult {
 
 const cache = new Map<string, Promise<string | null>>();
 
-const normalize = (value: string): string => value.toLowerCase().replace(/\s+-\s+(single|ep)$/, '').replace(/\s*[([][^)\]]*[)\]]/g, '').replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
+const normalize = (value: string): string => value.toLowerCase().replace(/\s+-\s+(single|ep)$/, '').replace(/\s*[([][^)\]]*[)\]]/g, '').replace(/[\s!-\/:-@\[-`{-~ -¿ -⁯　-〿！-／]+/g, ' ').trim();
 const decodeEntities = (value: string): string => value.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>');
 
 async function findAlbumPage(query: ArtworkQuery): Promise<string | null> {
     const params = new URLSearchParams({
         country: 'us',
         media: 'music',
-        entity: 'song',
+        entity: query.title ? 'song' : 'album',
         limit: '10',
-        term: `${query.title} ${query.artist}`
+        term: `${query.title ?? query.album} ${query.artist}`
     });
 
     const response = await fetch(`https://itunes.apple.com/search?${params}`);

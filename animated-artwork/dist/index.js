@@ -8,15 +8,15 @@ var import_react2 = require("spotifyplus/react");
 
 // artwork.ts
 var cache = /* @__PURE__ */ new Map();
-var normalize = (value) => value.toLowerCase().replace(/\s+-\s+(single|ep)$/, "").replace(/\s*[([][^)\]]*[)\]]/g, "").replace(/[^\p{L}\p{N}]+/gu, " ").trim();
+var normalize = (value) => value.toLowerCase().replace(/\s+-\s+(single|ep)$/, "").replace(/\s*[([][^)\]]*[)\]]/g, "").replace(/[\s!-\/:-@\[-`{-~ -¿ -⁯　-〿！-／]+/g, " ").trim();
 var decodeEntities = (value) => value.replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, "<").replace(/&gt;/g, ">");
 async function findAlbumPage(query) {
   const params = new URLSearchParams({
     country: "us",
     media: "music",
-    entity: "song",
+    entity: query.title ? "song" : "album",
     limit: "10",
-    term: `${query.title} ${query.artist}`
+    term: `${query.title ?? query.album} ${query.artist}`
   });
   const response = await fetch(`https://itunes.apple.com/search?${params}`);
   if (!response.ok) throw new Error(`iTunes search HTTP ${response.status}`);
@@ -58,6 +58,28 @@ var middleCover = {
   resourceId: "com.spotify.music:id/cover_art_container",
   minVisible: 0.85
 };
+var albumHeader = {
+  screen: "album.page",
+  resourceId: "com.spotify.music:id/cwp_header_artwork"
+};
+async function queryFor(uri) {
+  if (uri.startsWith("spotify:track:")) {
+    const track = await import_spotifyplus.SpotifyPlus.Internal.getTrack(uri);
+    return track && {
+      title: track.title,
+      artist: track.artist,
+      album: track.album.title
+    };
+  }
+  if (uri.startsWith("spotify:album:")) {
+    const album = await import_spotifyplus.SpotifyPlus.Internal.getAlbum(uri);
+    return album && {
+      artist: album.artists[0]?.name ?? "",
+      album: album.name
+    };
+  }
+  return null;
+}
 function AnimatedArtwork({
   uri
 }) {
@@ -65,16 +87,12 @@ function AnimatedArtwork({
   (0, import_react.useEffect)(() => {
     let cancelled = false;
     setSrc(null);
-    if (!uri?.startsWith("spotify:track:")) return;
+    if (!uri) return;
     const load = async () => {
       try {
-        const track = await import_spotifyplus.SpotifyPlus.Internal.getTrack(uri);
-        if (cancelled || !track) return;
-        const video = await findAnimatedArtwork({
-          title: track.title,
-          artist: track.artist,
-          album: track.album.title
-        });
+        const query = await queryFor(uri);
+        if (cancelled || !query) return;
+        const video = await findAnimatedArtwork(query);
         if (!cancelled) setSrc(video);
       } catch (error) {
         if (!cancelled) console.warn("Could not load animated artwork", error);
@@ -88,5 +106,8 @@ function AnimatedArtwork({
   return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ArtworkVideo, { width: "100%", height: "100%", src });
 }
 import_spotifyplus.SpotifyPlus.UI.overlay(middleCover, ({
+  context
+}) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AnimatedArtwork, { uri: context.uri }));
+import_spotifyplus.SpotifyPlus.UI.overlay(albumHeader, ({
   context
 }) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AnimatedArtwork, { uri: context.uri }));

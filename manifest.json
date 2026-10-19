@@ -3,7 +3,7 @@
         "$schema": "https://lenerd46.github.io/spotifyplus-docs/schemas/manifest.schema.json",
         "id": "com.lenerd.playnext",
         "name": "Play Next",
-        "description": "Adds a new button that lets songs persist after finishing in a queue",
+        "description": "Adds a new button that lets songs persist in history after finishing in a queue",
         "version": "1.0.0",
         "authors": [
             {
@@ -19,7 +19,8 @@
             "assets/list-start.svg"
         ],
         "api": 2,
-        "main": "play-next/dist/index.js"
+        "main": "play-next/dist/index.js",
+        "readme": "play-next/readme.md"
     },
     {
         "id": "com.lenerd.privatesession",
@@ -37,7 +38,8 @@
             "settings"
         ],
         "api": 2,
-        "main": "private-session/dist/index.js"
+        "main": "private-session/dist/index.js",
+        "readme": "private-session/readme.md"
     },
     {
         "id": "com.lenerd.bringbacklikes",
@@ -62,7 +64,8 @@
         "native": {
             "pluginClass": "com.lenerd.bringbacklikes.nativeui.NativePlugin",
             "apk": "native.apk"
-        }
+        },
+        "readme": "bring-back-likes/readme.md"
     },
     {
         "$schema": "https://lenerd46.github.io/spotifyplus-docs/schemas/manifest.schema.json",
@@ -85,7 +88,8 @@
         "native": {
             "pluginClass": "com.spotifyplus.sleeptimermanager.TimerManagerPlugin",
             "apk": "native.apk"
-        }
+        },
+        "readme": "sleep-timers/readme.md"
     },
     {
         "id": "com.lenerd.lastfm",
@@ -107,7 +111,8 @@
             "assets/lastfm.png"
         ],
         "api": 2,
-        "main": "lastfm/dist/index.js"
+        "main": "lastfm/dist/index.js",
+        "readme": "lastfm/readme.md"
     },
     {
         "id": "com.lenerd.animatedartwork",
@@ -129,6 +134,7 @@
         "native": {
             "pluginClass": "com.lenerd.animatedartwork.nativeui.NativePlugin",
             "apk": "native.apk"
-        }
+        },
+        "readme": "animated-artwork/readme.md"
     }
 ]

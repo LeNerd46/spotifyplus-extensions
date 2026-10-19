@@ -1,12 +1,9 @@
 # Custom Sleep Timers
 
-The manager and add-timer form are React JSX in `src/index.tsx`. Both use the shared
-`BottomSheet` component from `spotifyplus/react`, presented with `SpotifyPlus.UI.mount()`.
-Only the press-and-hold drag list is a native component (`TimerList`).
+Custom Sleep Timers is an extension for Spotify Plus that lets you create custom sleep timers. You can reorder the sleep timers in the list, you can add custom values to the list, and you can create one time timers if you don't want to keep it in the list.
 
-Remove or reorder presets in Manage timers, then select Add sleep timer. Choose a positive
-duration in minutes or hours. Save timer adds a preset; Start timer starts a one-time timer.
-Back or outside-tap closes the form without saving or starting anything.
+## Support
 
-Run `npm install`, `npm run typecheck`, and `npm run build`. The native build uses the local
-Spotify Plus SDK release AAR. `npm run dev` deploys and watches the extension on the phone.
+Make sure you star [Spotify Plus](https://www.github.com/LeNerd46/SpotifyPlus) on GitHub!
+
+If you have any issues, feel free to create an issue on the [GitHub](https://github.com/LeNerd46/spotifyplus-extensions)
