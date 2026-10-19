@@ -50,7 +50,7 @@ function LikeButton() {
           setState(next);
         }
       } catch (error) {
-        import_spotifyplus.SpotifyPlus.warn("Could not check the current song's like status", error);
+        console.warn("Could not check the current song's like status", error);
       }
     }
     refresh();
@@ -76,8 +76,8 @@ function LikeButton() {
       };
       setState(current.current);
     } catch (error) {
-      import_spotifyplus.SpotifyPlus.error("Could not change the song's like status", error);
-      import_spotifyplus.SpotifyPlus.toast("Could not update Liked Songs. Please try again.");
+      console.error("Could not change the song's like status", error);
+      import_spotifyplus.SpotifyPlus.toast("Could not update Liked Songs. Please try again");
     }
   }
   return import_react.default.createElement(HeartOverlay, {

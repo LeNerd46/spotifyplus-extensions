@@ -1,6 +1,7 @@
 import { SpotifyPlus } from 'spotifyplus';
 import { PlayNextError, PlayNextQueue } from './play-next';
 
+const listStart = SpotifyPlus.Assets.image('assets/list-start.svg');
 const queue = new PlayNextQueue(SpotifyPlus.UpNext);
 let timer: ReturnType<typeof setInterval> | undefined;
 let refreshFailed = false;
@@ -53,7 +54,7 @@ new SpotifyPlus.ContextMenu('Play next', uri => {
     }
 
     updateTimer();
-}, uri => /^spotify:track:[A-Za-z0-9]+$/.test(uri), false, 'track').register();
+}, uri => /^spotify:track:[A-Za-z0-9]+$/.test(uri), false, 'track', listStart).register();
 
 SpotifyPlus.Events.on('songChanged', refresh);
 SpotifyPlus.Events.on('shuffleChanged', refresh);

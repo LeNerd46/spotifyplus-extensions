@@ -6,6 +6,7 @@ var import_react = require("react");
 var import_spotifyplus = require("spotifyplus");
 var import_react2 = require("spotifyplus/react");
 var import_jsx_runtime = require("react/jsx-runtime");
+var logo = import_spotifyplus.SpotifyPlus.Assets.image("assets/lastfm");
 var username = import_spotifyplus.SpotifyPlus.Platform.Storage.get("username") ?? "";
 var apiKey = "3713c2e0b7493e945555b7f52dc4232e";
 var getMediaType = (uri) => {
@@ -155,3 +156,6 @@ import_spotifyplus.SpotifyPlus.Events.on("settings.changed", (e) => {
     username = setting.value;
   }
 });
+new import_spotifyplus.SpotifyPlus.ContextMenu("Open in Last.fm", (uri) => {
+  import_spotifyplus.SpotifyPlus.Navigation.open(``);
+}, void 0, void 0, void 0, logo).register();

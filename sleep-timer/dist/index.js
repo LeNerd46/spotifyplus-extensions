@@ -170,13 +170,13 @@ var TimerManager = class {
 
 // src/index.tsx
 var import_jsx_runtime = require("react/jsx-runtime");
+var id = () => `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
 var TimerList = (0, import_react2.createNativeComponent)("TimerList", {
   scriptId: "com.spotifyplus.sleeptimer"
 });
-var id = () => `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
+var manager = new TimerManager(import_spotifyplus.SpotifyPlus.Platform.SleepTimer, import_spotifyplus.SpotifyPlus.Platform.Storage, openManager, id);
 var root;
 var opening = false;
-var manager = new TimerManager(import_spotifyplus.SpotifyPlus.Platform.SleepTimer, import_spotifyplus.SpotifyPlus.Platform.Storage, openManager, id);
 async function openManager() {
   if (opening || root) return;
   opening = true;
@@ -260,7 +260,9 @@ function Manager({
         duration,
         unit,
         save
-      })) setEditor(false);
+      })) {
+        setEditor(false);
+      }
     } })
   ] });
 }

@@ -15,18 +15,21 @@
             "queue",
             "playback"
         ],
+        "assets": [
+            "assets/list-start.svg"
+        ],
         "api": 2,
         "main": "play-next/dist/index.js"
     },
     {
         "id": "com.lenerd.privatesession",
         "name": "Persistent Private Session",
-        "description": "Keep Spotify's private session enabled, with a toggle to turn persistence on or off.",
+        "description": "Keep Spotify's private session enabled, with a toggle to turn persistence on or off",
         "version": "1.0.0",
         "author": [
             {
-                "name": "Devon Shoutz",
-                "url": "https://github.com/devonshoutz"
+                "name": "LeNerd46",
+                "url": "https://github.com/LeNerd46"
             }
         ],
         "tags": [
@@ -39,12 +42,12 @@
     {
         "id": "com.lenerd.bringbacklikes",
         "name": "Bring Back Likes",
-        "description": "Restore the heart button on Now Playing.",
+        "description": "Restore the heart button on Now Playing",
         "version": "1.0.0",
         "authors": [
             {
-                "name": "Author",
-                "url": "https://www.github.com/Author"
+                "name": "LeNerd46",
+                "url": "https://www.github.com/LeNerd46"
             }
         ],
         "tags": [
@@ -54,7 +57,7 @@
         "api": 2,
         "main": "bring-back-likes/dist/index.js",
         "assets": [
-            "bring-back-likes/assets/heart.png"
+            "assets/heart.png"
         ],
         "native": {
             "pluginClass": "com.lenerd.bringbacklikes.nativeui.NativePlugin",
@@ -91,8 +94,8 @@
         "version": "1.0.0",
         "authors": [
             {
-                "name": "Lenerd46",
-                "url": "https://www.github.com/Lenerd46"
+                "name": "LeNerd46",
+                "url": "https://www.github.com/LeNerd46"
             }
         ],
         "tags": [
@@ -100,7 +103,32 @@
             "stats",
             "scrobbles"
         ],
+        "assets": [
+            "assets/lastfm.png"
+        ],
         "api": 2,
         "main": "lastfm/dist/index.js"
+    },
+    {
+        "id": "com.lenerd.animatedartwork",
+        "name": "Animated Album Artwork",
+        "description": "Replaces Spotify's album artwork with animated artwork, when available",
+        "version": "1.0.0",
+        "authors": [
+            {
+                "name": "LeNerd46",
+                "url": "https://www.github.com/LeNerd46"
+            }
+        ],
+        "tags": [
+            "ui",
+            "artwork"
+        ],
+        "api": 2,
+        "main": "animated-artwork/dist/index.js",
+        "native": {
+            "pluginClass": "com.lenerd.animatedartwork.nativeui.NativePlugin",
+            "apk": "native.apk"
+        }
     }
 ]

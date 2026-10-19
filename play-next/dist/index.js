@@ -65,6 +65,7 @@ var PlayNextQueue = class {
 };
 
 // index.ts
+var listStart = import_spotifyplus.SpotifyPlus.Assets.image("assets/list-start.svg");
 var queue = new PlayNextQueue(import_spotifyplus.SpotifyPlus.UpNext);
 var timer;
 var refreshFailed = false;
@@ -107,7 +108,7 @@ new import_spotifyplus.SpotifyPlus.ContextMenu("Play next", (uri) => {
     import_spotifyplus.SpotifyPlus.toast(error instanceof PlayNextError && error.added ? "Added to Up next, but couldn't track it. Update Spotify Plus." : "Could not add to Play next. Please try again.");
   }
   updateTimer();
-}, (uri) => /^spotify:track:[A-Za-z0-9]+$/.test(uri), false, "track").register();
+}, (uri) => /^spotify:track:[A-Za-z0-9]+$/.test(uri), false, "track", listStart).register();
 import_spotifyplus.SpotifyPlus.Events.on("songChanged", refresh);
 import_spotifyplus.SpotifyPlus.Events.on("shuffleChanged", refresh);
 import_spotifyplus.SpotifyPlus.Events.on("contextChanged", reset);

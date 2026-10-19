@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { ExtensionSetting, SpotifyPlus } from 'spotifyplus';
 import { Image, Text, View } from 'spotifyplus/react';
 
+const logo = SpotifyPlus.Assets.image('assets/lastfm');
 let username: string = SpotifyPlus.Platform.Storage.get('username') ?? '';
 const apiKey = '3713c2e0b7493e945555b7f52dc4232e';
 
@@ -189,3 +190,8 @@ SpotifyPlus.Events.on('settings.changed', (e: unknown) => {
         username = setting.value;
     }
 });
+
+new SpotifyPlus.ContextMenu('Open in Last.fm', (uri) => {
+    SpotifyPlus.Navigation.open(``);
+    //@ts-ignore
+}, undefined, undefined, undefined, logo).register();

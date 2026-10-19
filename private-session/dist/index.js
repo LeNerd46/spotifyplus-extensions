@@ -3,12 +3,9 @@ globalThis.__spotifyplus_worklet_bundle__ = 2;
 
 // index.ts
 var import_spotifyplus = require("spotifyplus");
-var SETTING_ID = "persistentPrivateSession";
-var PRIVATE_SESSION_ID = "privateSession";
-var storage = import_spotifyplus.SpotifyPlus.Platform.Storage;
-var saved = storage.get(SETTING_ID);
+var saved = import_spotifyplus.SpotifyPlus.Platform.Storage.get("persistentPrivateSession");
 var toggle = {
-  id: SETTING_ID,
+  id: "persistentPrivateSession",
   type: "toggle",
   label: "Persistent private session",
   description: "Enable private session and turn it back on whenever Spotify disables it.",
@@ -22,13 +19,13 @@ function cancelRetry() {
 function ensurePrivateSession() {
   if (!toggle.value) return;
   try {
-    if (import_spotifyplus.SpotifyPlus.Settings.get(PRIVATE_SESSION_ID) !== true) {
-      import_spotifyplus.SpotifyPlus.Settings.set(PRIVATE_SESSION_ID, true);
+    if (import_spotifyplus.SpotifyPlus.Settings.get("privateSession") !== true) {
+      import_spotifyplus.SpotifyPlus.Settings.set("privateSession", true);
     }
     cancelRetry();
   } catch (error) {
     if (retry === void 0) {
-      import_spotifyplus.SpotifyPlus.warn("Could not enable private session; retrying in 5 seconds.", error);
+      console.warn("Could not enable private session; retrying in 5 seconds", error);
       retry = setTimeout(() => {
         retry = void 0;
         ensurePrivateSession();
@@ -41,8 +38,8 @@ import_spotifyplus.SpotifyPlus.Settings.registerSetting({
   items: [toggle]
 });
 import_spotifyplus.SpotifyPlus.Events.on("settings.changed", (setting) => {
-  if (setting.id !== SETTING_ID || setting.type !== "toggle") return;
-  storage.set(SETTING_ID, setting.value);
+  if (setting.id !== "persistentPrivateSession" || setting.type !== "toggle") return;
+  import_spotifyplus.SpotifyPlus.Platform.Storage.set("persistentPrivateSession", setting.value);
   toggle.value = setting.value;
   cancelRetry();
   if (toggle.value) ensurePrivateSession();
@@ -51,6 +48,6 @@ import_spotifyplus.SpotifyPlus.Events.on("settingChanged", ({
   id,
   value
 }) => {
-  if (id === PRIVATE_SESSION_ID && value === false) ensurePrivateSession();
+  if (id === "privateSession" && value === false) ensurePrivateSession();
 });
 ensurePrivateSession();
